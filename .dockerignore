@@ -1,0 +1,11 @@
+.git
+.openai
+.sites-runtime
+data
+dist
+node_modules
+tests
+.env*
+config.json
+config.*.json
+*.zip

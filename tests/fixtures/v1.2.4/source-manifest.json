@@ -1,0 +1,20 @@
+{
+  "version": "1.2.4",
+  "commit": "31869544f1b186200f6f207cdce5d004e170ff7d",
+  "purpose": "Frozen original buying implementation for regression comparisons. Test-only; never used by the application runtime.",
+  "files": {
+    "public/core.mjs": "e0102dbb2c2e26cdf60587cd274fa5dd04496218348677973b62b528420f1659",
+    "public/package-rewards.mjs": "1c185d4dff459aa12b3ec81c65000f7364900eff42aa581d7bdacc308a9b3f5f",
+    "public/provider-amounts.mjs": "573e840c852f09bd29a425c7da53fd396d353a36d6c81c05f9210864fe31d692",
+    "public/purchase-status.mjs": "0ec8143700aa84295f280c668b750fc9317fff99c45b56d79bf2aa2d50caf116",
+    "public/purchases.mjs": "9161870667dee3119a3502b0d3bdb1a30f96a4c16f94cb06ea8683ebe56e9614",
+    "public/rewards.mjs": "c883b4c946561bce73619bbce1f48d70a1043d709f3d9eab60995099b76fd768",
+    "server/config.mjs": "0c663cfbae608b930082c8ffae02475df20d3709ba9ba6d2d75722f6511a9327",
+    "server/engine.mjs": "15e5fccf2d4896242bfeb3846f57d4de1769431b69778f3640782b84319ce075",
+    "server/manual-purchases.mjs": "fbe2b979d42d09914ea854556082463d5698c13768229003f81c25eeb5a41321",
+    "server/nicehash.mjs": "4373a46c851d9b496130742b154e7922eb33a9faf47c48d5a22381e249c29e03",
+    "server/order-links.mjs": "517af7807a42b6b93f8399efb11ce680b160d86a867d2dec4f10b5b4b0a5bdd7",
+    "server/purchase-failures.mjs": "a83d1ad2dbfc3e3ec616f04832fcd9461e3150f33ab3d28876b2ffc73e1d852c",
+    "server/team-membership.mjs": "bde490725ecc610f74f95427f61ddb4835f482b80483fea8cedb4e798c9f024d"
+  }
+}

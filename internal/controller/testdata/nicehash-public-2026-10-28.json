@@ -1,0 +1,619 @@
+{
+  "capturedAt": "2026-10-28T09:27:26.876160+00:00",
+  "sources": {
+    "teams": "https://api2.nicehash.com/main/api/v2/public/solo/shared/order?onlyGold=false&page=0&limit=100",
+    "solo": "https://api2.nicehash.com/main/api/v2/public/solo/package",
+    "rates": "https://api2.nicehash.com/main/api/v2/exchangeRate/list",
+    "schema": "https://api2.nicehash.com/hashpower/api/v2/info/hashpowerorders-rest-openapi"
+  },
+  "sourceSHA256": {
+    "teams.json": "92081318e2f3726e34effe2b02894059a4e3abd06d34d6b2e9cfd70d2f80bbfa",
+    "solo.json": "a1544e4a6a4988b60057352cbed1be3ecc67140e669c3c0e235bd05ac0bed5d8",
+    "rates.json": "5975c0a4b23bbb7ff6ad9f461a867e9feb666539ed6e0e9f5b9f01cb656fb7b3",
+    "rest-schema.json": "2314e4f6c0122c693f754effb119f476ff2d2b3c593f70b00d5b23b69a6f42dc"
+  },
+  "teams": [
+    {
+      "id": "7a1c9669-2834-43e5-9b35-2b6313ebee33",
+      "currencyAlgoTicket": {
+        "id": "f2388ef2-bfb8-4705-993a-3978ceca8773",
+        "price": 0.0137,
+        "minShareAmount": 0.0001,
+        "pricesForCurrencies": {},
+        "probabilityPrecision": 2.43,
+        "probability": 2,
+        "projectedSpeed": 0.1102,
+        "currencyAlgo": {
+          "id": "fcb12fb5-1765-497f-8bca-0b46751844c0",
+          "currency": "ZEC",
+          "miningAlgorithm": "EQUIHASH",
+          "networkDifficulty": 113747370176.80118,
+          "networkHashpower": 29961112457,
+          "blockReward": 1.2375,
+          "blockRewardWithNhFee": 1.25,
+          "blockTime": 75.0,
+          "rewardGroupingMode": "COIN"
+        },
+        "currencyMarket": "BTC",
+        "status": "A",
+        "available": true,
+        "name": "Team Bronze",
+        "duration": 10800,
+        "countdownDuration": 3600,
+        "isPublic": false,
+        "massBuyConfiguration": {
+          "id": "9d973396-a838-4fba-8f87-6f62faa5a07c",
+          "status": "AVAILABLE",
+          "available": true,
+          "minPackages": 2,
+          "maxPackages": 1000,
+          "minShares": 1,
+          "maxShares": 10
+        }
+      },
+      "createdTs": "2026-10-28T08:45:03.378966Z",
+      "fullAmount": 0.0124,
+      "minShareAmount": 0.0001,
+      "addedAmount": 0.0001,
+      "probabilityPrecision": 228.94,
+      "probability": 228,
+      "projectedSpeed": 0.0027,
+      "status": "WAITING",
+      "countdownDuration": 3600,
+      "duration": 3600,
+      "numberOfParticipants": 1,
+      "ignoreFilledAmount": false,
+      "spawningMode": "CONTINUOUS",
+      "isPublic": false,
+      "state": "OPEN"
+    },
+    {
+      "id": "a535bccc-d6e6-40da-87f7-26736e21cf2b",
+      "currencyAlgoTicket": {
+        "id": "09840f2f-2677-4eff-b193-4ab24ffde314",
+        "price": 0.0078,
+        "minShareAmount": 0.0001,
+        "pricesForCurrencies": {},
+        "probabilityPrecision": 5.95,
+        "probability": 5,
+        "mergeProbabilityPrecision": 2.7,
+        "mergeProbability": 2,
+        "projectedSpeed": 23.2581,
+        "currencyAlgo": {
+          "id": "71895080-afa8-4f53-8d9b-9f06a9032bce",
+          "currency": "LTC",
+          "miningAlgorithm": "SCRYPT",
+          "networkDifficulty": 92050154.01649,
+          "networkHashpower": 3032955827944338,
+          "blockReward": 6.1875,
+          "blockRewardWithNhFee": 6.25,
+          "blockTime": 150.0,
+          "rewardGroupingMode": "COIN"
+        },
+        "currencyMarket": "BTC",
+        "mergeCurrencyAlgo": {
+          "id": "b153ef3d-76ec-43f3-a727-f47d64ee496a",
+          "currency": "DOGE",
+          "miningAlgorithm": "SCRYPT",
+          "networkDifficulty": 59100935.27908,
+          "networkHashpower": 3011246636602334,
+          "blockReward": 9900.0,
+          "blockRewardWithNhFee": 10000.0,
+          "blockTime": 60.0,
+          "rewardGroupingMode": "COIN"
+        },
+        "status": "A",
+        "available": true,
+        "name": "Team Palladium",
+        "duration": 3600,
+        "countdownDuration": 3600,
+        "isPublic": false,
+        "massBuyConfiguration": {
+          "id": "f62c6bae-f1dc-4d14-b256-7dbbd9989e6d",
+          "status": "AVAILABLE",
+          "available": true,
+          "minPackages": 2,
+          "maxPackages": 1000,
+          "minShares": 1,
+          "maxShares": 10
+        }
+      },
+      "createdTs": "2026-10-28T06:35:09.724Z",
+      "fullAmount": 0.0064,
+      "minShareAmount": 0.0001,
+      "addedAmount": 0.0001,
+      "probabilityPrecision": 390.71,
+      "probability": 390,
+      "mergeProbabilityPrecision": 155.47,
+      "mergeProbability": 155,
+      "projectedSpeed": 0.3239,
+      "status": "WAITING",
+      "countdownDuration": 3600,
+      "duration": 3600,
+      "numberOfParticipants": 1,
+      "ignoreFilledAmount": false,
+      "spawningMode": "CONTINUOUS",
+      "isPublic": false,
+      "state": "OPEN"
+    },
+    {
+      "id": "f9255b2f-a6fd-43d7-b82e-3502b037bf94",
+      "currencyAlgoTicket": {
+        "id": "370688a7-5de1-4171-889e-96567993fcb4",
+        "price": 0.0064,
+        "minShareAmount": 0.0001,
+        "pricesForCurrencies": {},
+        "probabilityPrecision": 2.82,
+        "probability": 2,
+        "projectedSpeed": 0.3248,
+        "currencyAlgo": {
+          "id": "4402218b-81fa-4993-8231-5d98139a82dd",
+          "currency": "BCH",
+          "miningAlgorithm": "SHA256ASICBOOST",
+          "networkDifficulty": 521351372368.613,
+          "networkHashpower": 4518769129218183000,
+          "blockReward": 3.09375,
+          "blockRewardWithNhFee": 3.125,
+          "blockTime": 600.0,
+          "rewardGroupingMode": "COIN"
+        },
+        "currencyMarket": "BTC",
+        "status": "A",
+        "available": true,
+        "name": "Team Silver",
+        "duration": 3600,
+        "countdownDuration": 3600,
+        "isPublic": false,
+        "massBuyConfiguration": {
+          "id": "362d20e7-76ca-4e77-8dce-d363d2f05924",
+          "status": "AVAILABLE",
+          "available": true,
+          "minPackages": 2,
+          "maxPackages": 1000,
+          "minShares": 1,
+          "maxShares": 10
+        }
+      },
+      "createdTs": "2026-10-27T23:56:04.041444Z",
+      "fullAmount": 0.0048,
+      "minShareAmount": 0.0001,
+      "addedAmount": 0.0006,
+      "probabilityPrecision": 25.13,
+      "probability": 25,
+      "projectedSpeed": 0.0306,
+      "status": "COUNTDOWN",
+      "lifeTimeTill": "2026-10-28T09:31:10.310128Z",
+      "countdownDuration": 3600,
+      "duration": 3600,
+      "numberOfParticipants": 5,
+      "ignoreFilledAmount": false,
+      "spawningMode": "CONTINUOUS",
+      "isPublic": false,
+      "state": "OPEN"
+    },
+    {
+      "id": "cbb0b623-a692-469f-a9a4-b27466f3fccc",
+      "currencyAlgoTicket": {
+        "id": "09977396-a081-42a9-b7bd-706ce6702df0",
+        "price": 0.0638,
+        "minShareAmount": 0.0001,
+        "pricesForCurrencies": {},
+        "probabilityPrecision": 56.55,
+        "probability": 56,
+        "projectedSpeed": 0.8119,
+        "currencyAlgo": {
+          "id": "1505a368-8bda-4825-810d-43954109eceb",
+          "currency": "BTC",
+          "miningAlgorithm": "SHA256ASICBOOST",
+          "networkDifficulty": 140577680051920.62,
+          "networkHashpower": 1092220845724274000000,
+          "blockReward": 3.09375,
+          "blockRewardWithNhFee": 3.125,
+          "blockTime": 600.0,
+          "rewardGroupingMode": "COIN"
+        },
+        "currencyMarket": "BTC",
+        "status": "A",
+        "available": true,
+        "name": "Team Gold",
+        "duration": 14400,
+        "countdownDuration": 14400,
+        "maxBuyCount": 1,
+        "isPublic": true,
+        "massBuyConfiguration": {
+          "id": "41b268d9-2587-4249-a131-7e3ec7fc3e05",
+          "status": "AVAILABLE",
+          "available": true,
+          "minPackages": 2,
+          "maxPackages": 1000,
+          "minShares": 1,
+          "maxShares": 100
+        }
+      },
+      "createdTs": "2026-10-28T08:56:04.382427Z",
+      "fullAmount": 0.0644,
+      "minShareAmount": 0.0001,
+      "addedAmount": 0.0004,
+      "probabilityPrecision": 9004.64,
+      "probability": 9004,
+      "projectedSpeed": 0.0202,
+      "status": "WAITING",
+      "lifeTimeTill": "2026-10-28T11:06:21.382307Z",
+      "countdownDuration": 14400,
+      "duration": 3600,
+      "numberOfParticipants": 3,
+      "ignoreFilledAmount": true,
+      "spawningMode": "ONE_BY_ONE",
+      "isPublic": true,
+      "state": "OPEN"
+    },
+    {
+      "id": "10ba4aba-d76e-416f-8e8f-72dc0d83174b",
+      "currencyAlgoTicket": {
+        "id": "174c3ba2-5784-40db-b790-735b778ca4ea",
+        "price": 70,
+        "minShareAmount": 1,
+        "pricesForCurrencies": {},
+        "probabilityPrecision": 16.75,
+        "probability": 16,
+        "projectedSpeed": 0.0457,
+        "currencyAlgo": {
+          "id": "9c95d902-c5a3-42f5-b233-799047564d4b",
+          "currency": "BCH",
+          "miningAlgorithm": "SHA256ASICBOOST_USDT",
+          "networkDifficulty": 521351372368.613,
+          "networkHashpower": 4518769129218183000,
+          "blockReward": 3.09375,
+          "blockRewardWithNhFee": 3.125,
+          "blockTime": 600.0,
+          "rewardGroupingMode": "COIN"
+        },
+        "currencyMarket": "USDT",
+        "status": "A",
+        "available": true,
+        "name": "Team Silver USDT",
+        "duration": 3600,
+        "countdownDuration": 3600,
+        "isPublic": false,
+        "massBuyConfiguration": {
+          "id": "eff9ecc4-6ca3-436f-9eea-04beb1256b3e",
+          "status": "AVAILABLE",
+          "available": true,
+          "minPackages": 2,
+          "maxPackages": 1000,
+          "minShares": 1,
+          "maxShares": 10
+        }
+      },
+      "createdTs": "2026-10-28T06:36:03.016705Z",
+      "fullAmount": 70,
+      "minShareAmount": 1,
+      "addedAmount": 0.0,
+      "probabilityPrecision": 16666667.17,
+      "probability": 16666667,
+      "projectedSpeed": 0.0,
+      "status": "WAITING",
+      "countdownDuration": 3600,
+      "duration": 3600,
+      "numberOfParticipants": 0,
+      "ignoreFilledAmount": false,
+      "spawningMode": "CONTINUOUS",
+      "isPublic": false,
+      "state": "OPEN"
+    },
+    {
+      "id": "d6aac14a-c586-4b18-a6ca-eb98f476b549",
+      "currencyAlgoTicket": {
+        "id": "2c7ce895-b869-40d1-9fec-093868ccea35",
+        "price": 400,
+        "minShareAmount": 1,
+        "pricesForCurrencies": {},
+        "probabilityPrecision": 796.81,
+        "probability": 796,
+        "projectedSpeed": 0.1143,
+        "currencyAlgo": {
+          "id": "c6fa8379-ddcf-4fda-895a-75bfd398c87c",
+          "currency": "BTC",
+          "miningAlgorithm": "SHA256ASICBOOST_USDT",
+          "networkDifficulty": 140577680051920.62,
+          "networkHashpower": 1092220845724274000000,
+          "blockReward": 3.09375,
+          "blockRewardWithNhFee": 3.125,
+          "blockTime": 600.0,
+          "rewardGroupingMode": "COIN"
+        },
+        "currencyMarket": "USDT",
+        "status": "A",
+        "available": true,
+        "name": "Team Gold USDT",
+        "duration": 7200,
+        "countdownDuration": 3600,
+        "isPublic": false,
+        "massBuyConfiguration": {
+          "id": "a965cf28-b2f8-4596-ba44-a002da1e75bb",
+          "status": "AVAILABLE",
+          "available": true,
+          "minPackages": 2,
+          "maxPackages": 1000,
+          "minShares": 1,
+          "maxShares": 50
+        }
+      },
+      "createdTs": "2026-10-28T08:29:03.330819Z",
+      "fullAmount": 400,
+      "minShareAmount": 1,
+      "addedAmount": 4.0,
+      "probabilityPrecision": 73746.81,
+      "probability": 73746,
+      "projectedSpeed": 0.0012,
+      "status": "COUNTDOWN",
+      "lifeTimeTill": "2026-10-28T10:04:28.784500Z",
+      "countdownDuration": 3600,
+      "duration": 7200,
+      "numberOfParticipants": 2,
+      "ignoreFilledAmount": false,
+      "spawningMode": "CONTINUOUS",
+      "isPublic": false,
+      "state": "OPEN"
+    }
+  ],
+  "solo": [
+    {
+      "id": "53350223-64ad-4137-a683-2cb8b41b59e0",
+      "price": 0.0001,
+      "minShareAmount": 0.0001,
+      "pricesForCurrencies": {},
+      "probabilityPrecision": 38052.25,
+      "probability": 38052,
+      "projectedSpeed": 0.0048,
+      "currencyAlgo": {
+        "id": "1505a368-8bda-4825-810d-43954109eceb",
+        "currency": "BTC",
+        "miningAlgorithm": "SHA256ASICBOOST",
+        "networkDifficulty": 140577680051920.62,
+        "networkHashpower": 1092220845724274000000,
+        "blockReward": 3.09375,
+        "blockRewardWithNhFee": 3.125,
+        "blockTime": 600.0,
+        "rewardGroupingMode": "COIN"
+      },
+      "currencyMarket": "BTC",
+      "status": "A",
+      "available": true,
+      "name": "Gold S",
+      "duration": 3600,
+      "countdownDuration": 7200,
+      "maxBuyCount": 1000,
+      "isPublic": false,
+      "massBuyConfiguration": {
+        "id": "2fcbc666-548f-4672-b329-b9646e8cc9ea",
+        "status": "SOLD_OUT",
+        "available": false,
+        "minPackages": 2,
+        "maxPackages": 1000
+      }
+    },
+    {
+      "id": "ac5cfa98-5c1d-4ccd-bd36-b09980772a43",
+      "price": 0.0001,
+      "minShareAmount": 0.0001,
+      "pricesForCurrencies": {},
+      "probabilityPrecision": 155.67,
+      "probability": 155,
+      "projectedSpeed": 0.0048,
+      "currencyAlgo": {
+        "id": "4402218b-81fa-4993-8231-5d98139a82dd",
+        "currency": "BCH",
+        "miningAlgorithm": "SHA256ASICBOOST",
+        "networkDifficulty": 521351372368.613,
+        "networkHashpower": 4518769129218183000,
+        "blockReward": 3.09375,
+        "blockRewardWithNhFee": 3.125,
+        "blockTime": 600.0,
+        "rewardGroupingMode": "COIN"
+      },
+      "currencyMarket": "BTC",
+      "status": "A",
+      "available": true,
+      "name": "Silver S",
+      "duration": 3600,
+      "countdownDuration": 7200,
+      "maxBuyCount": 1000,
+      "isPublic": false,
+      "massBuyConfiguration": {
+        "id": "f9f09886-38f1-4d5f-a328-99ed8d00adb6",
+        "status": "SOLD_OUT",
+        "available": false,
+        "minPackages": 2,
+        "maxPackages": 1000
+      }
+    },
+    {
+      "id": "eac7887b-fa16-4a4d-bb9e-d141c235122c",
+      "price": 0.0001,
+      "minShareAmount": 0.0001,
+      "pricesForCurrencies": {},
+      "probabilityPrecision": 449.25,
+      "probability": 449,
+      "mergeProbabilityPrecision": 178.72,
+      "mergeProbability": 178,
+      "projectedSpeed": 0.2816,
+      "currencyAlgo": {
+        "id": "71895080-afa8-4f53-8d9b-9f06a9032bce",
+        "currency": "LTC",
+        "miningAlgorithm": "SCRYPT",
+        "networkDifficulty": 92050154.01649,
+        "networkHashpower": 3032955827944338,
+        "blockReward": 6.1875,
+        "blockRewardWithNhFee": 6.25,
+        "blockTime": 150.0,
+        "rewardGroupingMode": "COIN"
+      },
+      "currencyMarket": "BTC",
+      "mergeCurrencyAlgo": {
+        "id": "b153ef3d-76ec-43f3-a727-f47d64ee496a",
+        "currency": "DOGE",
+        "miningAlgorithm": "SCRYPT",
+        "networkDifficulty": 59100935.27908,
+        "networkHashpower": 3011246636602334,
+        "blockReward": 9900.0,
+        "blockRewardWithNhFee": 10000.0,
+        "blockTime": 60.0,
+        "rewardGroupingMode": "COIN"
+      },
+      "status": "A",
+      "available": true,
+      "name": "Palladium S",
+      "duration": 3600,
+      "maxBuyCount": 1000,
+      "isPublic": false,
+      "massBuyConfiguration": {
+        "id": "ffe08a23-5c87-4cba-ac2e-afc78783a030",
+        "status": "AVAILABLE",
+        "available": true,
+        "minPackages": 2,
+        "maxPackages": 1000
+      }
+    },
+    {
+      "id": "ae83e0f8-0071-4ea5-8247-9b62bea530f8",
+      "price": 0.0001,
+      "minShareAmount": 0.0001,
+      "pricesForCurrencies": {},
+      "probabilityPrecision": 274.62,
+      "probability": 274,
+      "projectedSpeed": 0.0023,
+      "currencyAlgo": {
+        "id": "fcb12fb5-1765-497f-8bca-0b46751844c0",
+        "currency": "ZEC",
+        "miningAlgorithm": "EQUIHASH",
+        "networkDifficulty": 113747370176.80118,
+        "networkHashpower": 29961112457,
+        "blockReward": 1.2375,
+        "blockRewardWithNhFee": 1.25,
+        "blockTime": 75.0,
+        "rewardGroupingMode": "COIN"
+      },
+      "currencyMarket": "BTC",
+      "status": "A",
+      "available": true,
+      "name": "Bronze S",
+      "duration": 3600,
+      "countdownDuration": 7200,
+      "maxBuyCount": 1000,
+      "isPublic": false,
+      "massBuyConfiguration": {
+        "id": "ead52aa1-c77b-427e-9755-9ad5d0eb289b",
+        "status": "SOLD_OUT",
+        "available": true,
+        "minPackages": 2,
+        "maxPackages": 1000
+      }
+    }
+  ],
+  "rates": {
+    "list": [
+      {
+        "fromCurrency": "ZEC",
+        "toCurrency": "BTC",
+        "exchangeRate": "0.01614209"
+      },
+      {
+        "fromCurrency": "BTC",
+        "toCurrency": "EUR",
+        "exchangeRate": "73245.42725663"
+      },
+      {
+        "fromCurrency": "EUR",
+        "toCurrency": "EUR",
+        "exchangeRate": "1.00000000"
+      },
+      {
+        "fromCurrency": "ZEC",
+        "toCurrency": "USD",
+        "exchangeRate": "1315.30395607"
+      },
+      {
+        "fromCurrency": "EUR",
+        "toCurrency": "BTC",
+        "exchangeRate": "0.00001365"
+      },
+      {
+        "fromCurrency": "LTC",
+        "toCurrency": "BTC",
+        "exchangeRate": "0.00070802"
+      },
+      {
+        "fromCurrency": "DOGE",
+        "toCurrency": "USD",
+        "exchangeRate": "0.08026499"
+      },
+      {
+        "fromCurrency": "BTC",
+        "toCurrency": "USD",
+        "exchangeRate": "81482.85500000"
+      },
+      {
+        "fromCurrency": "ZEC",
+        "toCurrency": "EUR",
+        "exchangeRate": "1182.33461793"
+      },
+      {
+        "fromCurrency": "EUR",
+        "toCurrency": "USD",
+        "exchangeRate": "1.11246400"
+      },
+      {
+        "fromCurrency": "USD",
+        "toCurrency": "USD",
+        "exchangeRate": "1.00000000"
+      },
+      {
+        "fromCurrency": "DOGE",
+        "toCurrency": "EUR",
+        "exchangeRate": "0.07215069"
+      },
+      {
+        "fromCurrency": "DOGE",
+        "toCurrency": "BTC",
+        "exchangeRate": "0.00000098"
+      },
+      {
+        "fromCurrency": "USD",
+        "toCurrency": "EUR",
+        "exchangeRate": "0.89890600"
+      },
+      {
+        "fromCurrency": "BCH",
+        "toCurrency": "USD",
+        "exchangeRate": "298.90500000"
+      },
+      {
+        "fromCurrency": "USD",
+        "toCurrency": "BTC",
+        "exchangeRate": "0.00001227"
+      },
+      {
+        "fromCurrency": "LTC",
+        "toCurrency": "EUR",
+        "exchangeRate": "51.85940069"
+      },
+      {
+        "fromCurrency": "BCH",
+        "toCurrency": "BTC",
+        "exchangeRate": "0.00366831"
+      },
+      {
+        "fromCurrency": "BCH",
+        "toCurrency": "EUR",
+        "exchangeRate": "268.68749793"
+      },
+      {
+        "fromCurrency": "LTC",
+        "toCurrency": "USD",
+        "exchangeRate": "57.69168377"
+      }
+    ]
+  },
+  "note": "Public response fields retained without marketing configuration. No private account data or credentials."
+}

@@ -1,0 +1,35 @@
+services:
+  easymining:
+    build: .
+    container_name: fastpool-easymining
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 40s
+    ports:
+      - "8080:8080"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8080
+      DATA_DIR: /data
+      NICEHASH_API_KEY: ${NICEHASH_API_KEY:-}
+      NICEHASH_API_SECRET: ${NICEHASH_API_SECRET:-}
+      NICEHASH_ORGANIZATION_ID: ${NICEHASH_ORGANIZATION_ID:-}
+      NICEHASH_BASE_URL: ${NICEHASH_BASE_URL:-https://api2.nicehash.com}
+      # Optional initial password (otherwise use the one-time setup UI):
+      APP_PASSWORD: ${APP_PASSWORD:-}
+      # Exact browser origin when using HTTPS reverse proxy:
+      PUBLIC_URL: ${PUBLIC_URL:-}
+      # Optional JSON file mounted below:
+      # NICEHASH_CONFIG_FILE: /config/nicehash.json
+      # For HTTPS behind a proxy, set PUBLIC_URL to the exact origin, e.g.
+      # PUBLIC_URL: https://easymining.example.com
+    volumes:
+      - easymining_data:/data
+      # Optional existing config.json with the nicehash object:
+      # - ./config.json:/config/nicehash.json:ro
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+volumes:
+  easymining_data:

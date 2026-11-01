@@ -1,0 +1,12 @@
+export const REQUEST_PROFILES=Object.freeze([
+  {id:'documented',name:'Documented · /main',prefix:'/main',description:'Keeps the v1.2.4 request format: amount, shares and clear. Verified cumulative additions remain available.'},
+  {id:'web',name:'Web client · /hashpower',prefix:'/hashpower',description:'Uses the route and amount/shares format observed in the NiceHash web client. Verified cumulative additions remain available.'},
+  {id:'guide',name:'Guide · shares only',prefix:'/hashpower',description:'Matches the supplied integration guide: shares and reward destinations, with amount and clear omitted. First joins only; later buying levels wait for another format.'}
+]);
+export const purchaseProfile=settings=>REQUEST_PROFILES.some(p=>p.id===settings?.purchaseRequestProfile)?settings.purchaseRequestProfile:'documented';
+export const teamPurchasePath=(profile='documented')=>(REQUEST_PROFILES.find(p=>p.id===profile)||REQUEST_PROFILES[0]).prefix+'/api/v2/hashpower/shared/ticket/';
+const e=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function requestProfilePanel(settings,{demo=false,supported=true,serverVersion=''}={}){
+ const selected=purchaseProfile(settings),profile=REQUEST_PROFILES.find(p=>p.id===selected);
+ return `<form id="request-profile-form" class="card form-card"><h2>Purchase API format</h2><p>Choose the request format used for purchases, account history, reward details and saved-address lookups. Changing it pauses the engine and disarms live buying.</p>${supported?'':`<p class="callout warning">The running server (${e(serverVersion||'unknown version')}) needs updating before it can select a request format.</p>`}<div class="field"><label for="purchaseRequestProfile">Request format</label><select id="purchaseRequestProfile" name="purchaseRequestProfile" ${demo||!supported?'disabled':''}>${REQUEST_PROFILES.map(p=>`<option value="${p.id}" ${p.id===selected?'selected':''}>${p.name}</option>`).join('')}</select><small id="request-profile-help">${e(profile.description)}</small></div><p class="import-note">Purchases use one selected format with no automatic fallback or retry. History reads can try the other gateway only after HTTP 404/code 110. Funded API-key purchases have not been verified in this environment.</p><div class="form-error" id="request-profile-error"></div><div class="form-footer"><button class="btn primary" type="submit" ${demo||!supported?'disabled':''}>Save format</button></div></form>`;
+}

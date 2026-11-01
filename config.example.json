@@ -1,0 +1,8 @@
+{
+  "nicehash": {
+    "api_key": "${NICEHASH_API_KEY}",
+    "api_secret": "${NICEHASH_API_SECRET}",
+    "organization_id": "${NICEHASH_ORGANIZATION_ID}",
+    "base_url": "https://api2.nicehash.com"
+  }
+}

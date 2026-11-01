@@ -1,0 +1,14 @@
+data/
+config.json
+config.*.json
+!config.example.json
+.env
+.env.*
+!.env.example
+node_modules/
+.sites-runtime/
+.wrangler/
+*.zip
+dist/downloads/
+
+bin/

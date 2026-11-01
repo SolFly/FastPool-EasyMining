@@ -1,0 +1,13 @@
+{
+  "name": "fastpool-easymining-controller",
+  "version": "2.2.4-go",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "go run ./cmd/easymining",
+    "test": "go test ./...",
+    "test:browser": "node --test tests/*.test.mjs",
+    "build": "node scripts/build.mjs"
+  },
+  "description": "Native Go NiceHash EasyMining controller with web UI"
+}
