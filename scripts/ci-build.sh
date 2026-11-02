@@ -87,5 +87,7 @@ assets = ['fastpool-easymining-linux-amd64', 'fastpool-easymining-v' + version +
 (out / 'SHA256SUMS').write_text(''.join(hashlib.sha256((out / name).read_bytes()).hexdigest() + '  ' + name + '\n' for name in assets))
 PY
 
+python3 scripts/platform-releases.py package --target linux-amd64 --binary bin/fastpool-easymining-linux-amd64
+
 if [ -n "${GITHUB_OUTPUT:-}" ]; then printf 'version=%s\n' "$version" >> "$GITHUB_OUTPUT"; fi
 printf 'Built and verified FastPool EasyMining %s\n' "$version"
