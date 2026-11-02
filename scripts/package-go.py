@@ -4,7 +4,7 @@ import hashlib,json,pathlib,re,zipfile
 root=pathlib.Path(__file__).resolve().parents[1]
 version=re.search(r'const Version = "([^"]+)"',(root/'internal/controller/value.go').read_text())[1]
 files=[]
-for name in ['README.md','CHANGELOG.md','API-AUDIT.md','docs','Dockerfile','compose.yaml','.env.example','.dockerignore','.gitignore','config.example.json','go.mod','go.sum','assets.go','cmd','internal','public','vendor','bin/fastpool-easymining-linux-amd64']:
+for name in ['README.md','CHANGELOG.md','API-AUDIT.md','LICENSE','docs','Dockerfile','compose.yaml','.env.example','.dockerignore','.gitignore','config.example.json','go.mod','go.sum','assets.go','cmd','internal','public','vendor','bin/fastpool-easymining-linux-amd64']:
  p=root/name
  files.extend([p] if p.is_file() else sorted(x for x in p.rglob('*') if x.is_file()))
 files.extend([root/'scripts/package-go.py'])

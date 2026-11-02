@@ -12,7 +12,7 @@ export function sourceZip(root){
     if(statSync(file).isDirectory())for(const name of readdirSync(file).sort())walk(path+'/'+name);
     else files.push(path);
   }
-  for(const name of ['README.md','CHANGELOG.md','API-AUDIT.md','docs','Dockerfile','compose.yaml','.env.example','.dockerignore','.gitignore','config.example.json','go.mod','go.sum','assets.go','cmd','internal','public','vendor','package.json','server','scripts','tests'])walk(name);
+  for(const name of ['README.md','CHANGELOG.md','API-AUDIT.md','LICENSE','.github','.gitattributes','docs','Dockerfile','compose.yaml','.env.example','.dockerignore','.gitignore','config.example.json','go.mod','go.sum','assets.go','cmd','internal','public','vendor','package.json','server','scripts','tests'])walk(name);
   const chunks=[],central=[];let offset=0;
   for(const path of files){
     const name=Buffer.from('FastPool-EasyMining-v'+version+'/'+path),data=readFileSync(join(root,path)),compressed=deflateRawSync(data),crc=crc32(data);
