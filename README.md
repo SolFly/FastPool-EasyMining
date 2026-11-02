@@ -4,7 +4,7 @@
 
 Buy solo packages or team shares, automate buying strategies, and track personal rewards and profit & loss across separate BTC and USDT ledgers. Manage connections, payout destinations, spending limits, reports, and notifications from the web UI.
 
-**Current version:** `2.2.4-go` · **Runtime:** Go + SQLite · **Deployment:** Docker or standalone Linux binary
+**Current version:** `2.2.5-go` · **Runtime:** Go + SQLite · **Deployment:** Docker or standalone executables
 
 [![CI](https://github.com/SolFly/FastPool-EasyMining/actions/workflows/ci.yml/badge.svg)](https://github.com/SolFly/FastPool-EasyMining/actions/workflows/ci.yml) · [Download the latest release](https://github.com/SolFly/FastPool-EasyMining/releases/latest) · [MIT license](LICENSE)
 
@@ -71,17 +71,41 @@ ssh -L 8080:127.0.0.1:8080 user@your-server
 
 The Docker build includes vendored Go dependencies, compiles SQLite, and runs the service as UID 1000. It needs access to Docker base images and Alpine package repositories during the build. Persistent state is stored in the `easymining_data` named volume at `/data`.
 
-### Standalone Linux binary
+### Standalone Windows, macOS and Linux binaries
 
-The packaged Go **release ZIP** includes a static Linux amd64 executable. A GitHub source checkout contains the source for building it.
+Download your system's portable ZIP from [Releases](https://github.com/SolFly/FastPool-EasyMining/releases/latest). Each ZIP contains an executable with the browser UI embedded, a start guide, example configuration, and the license.
+
+| Computer / operating system | Target in the filename |
+| --- | --- |
+| Windows x64 (Intel/AMD) | `windows-amd64` |
+| Windows ARM64 | `windows-arm64` |
+| macOS Intel | `darwin-amd64` |
+| macOS Apple Silicon (M-series) | `darwin-arm64` |
+| Linux x64 (Intel/AMD) | `linux-amd64` |
+| Linux ARM64 (including 64-bit Raspberry Pi OS) | `linux-arm64` |
+
+Extract the ZIP and open PowerShell or a terminal in the extracted folder. Windows example:
+
+```powershell
+Copy-Item .env.example .env
+.\fastpool-easymining-windows-amd64.exe --env-file=.env
+```
+
+macOS Apple Silicon example (use your target's filename on another system):
 
 ```sh
 cp .env.example .env
-chmod +x bin/fastpool-easymining-linux-amd64
-./bin/fastpool-easymining-linux-amd64 --env-file=.env
+chmod +x fastpool-easymining-darwin-arm64
+./fastpool-easymining-darwin-arm64 --env-file=.env
 ```
 
-Run from the installation directory so `./data` and an optional `config.json` resolve to the intended files. Without `--env-file`, set variables through your service manager. For another architecture, build from source with a native Go/C toolchain.
+Open **http://localhost:8080** and use the setup token printed in the terminal. Keep the process running while buying or syncing. The binaries need no Node.js runtime or separately installed SQLite server. Linux binaries are static; Windows binaries need no compiler installation; macOS uses built-in system libraries. Windows/macOS executables are unsigned, and macOS builds are not notarized, so the operating system may request approval.
+
+The native test runners are Ubuntu 24.04 (x64/ARM64), Windows Server 2025 x64, Windows 11 ARM64, and macOS 15 (Intel/Apple Silicon). Older operating systems and 32-bit targets are not covered by the prebuilt release checks.
+
+Run from your installation folder so `./data` and `config.json` refer to the intended files. When upgrading, keep the existing data directory and its matching `master.key`. Without `--env-file`, set variables through your service manager. Verify downloaded files with `SHA256SUMS`; `BUILD_INFO.json` identifies the commit and native test results for all six targets.
+
+The full Linux amd64 distribution also retains `bin/fastpool-easymining-linux-amd64` and the Docker/Go source layout used by earlier releases.
 
 ## Configuration
 
@@ -207,7 +231,7 @@ Use your **existing installation directory and Compose project/volume identity**
    docker compose exec -T easymining wget -qO- http://127.0.0.1:8080/healthz
    ```
 
-4. Confirm `2.2.4-go`, reload the UI, sign in, sync the account, then explicitly arm and start live buying when ready.
+4. Confirm `2.2.5-go`, reload the UI, sign in, sync the account, then explicitly arm and start live buying when ready.
 
 Do not use `docker compose down -v` for an upgrade: it removes the persistent volume. Changing the project directory can select a different volume. Existing installations under `GO-version` should retain that directory/project or explicitly map the original volume.
 
@@ -241,7 +265,7 @@ DOCKER_BUILDKIT=0 docker build --no-cache -f Dockerfile -t "$fastpool_image" .
 docker run --rm --network none --entrypoint /usr/local/bin/easymining "$fastpool_image" --version
 ```
 
-After it prints `FastPool EasyMining 2.2.4-go · Go`, recreate the service and check its health:
+After it prints `FastPool EasyMining 2.2.5-go · Go`, recreate the service and check its health:
 
 ```sh
 docker compose up -d --no-build --pull never --force-recreate easymining
@@ -255,10 +279,10 @@ docker compose exec -T easymining wget -qO- http://127.0.0.1:8080/healthz
 ### GitHub Actions and releases
 
 - **CI** runs on pushes to `main`, pull requests, or **Actions → CI → Run workflow**. It runs Go vet/race tests and JavaScript regressions, builds the Docker image, checks the static executable's version, starts an isolated temporary instance, and saves the release files as a workflow artifact for 14 days.
-- **Release** runs for `v*` tags, relevant version/release-note changes on `main`, or **Actions → Release → Run workflow**. It runs the same checks, then creates a draft, attaches the executable, installable ZIP, full source ZIP, build metadata, and SHA-256 checksums, and publishes it. Existing published releases are left unchanged.
-- For a new version, update `internal/controller/value.go`, `public/core.mjs`, and `package.json` together, and add `docs/releases/v<VERSION>.md`. Push to `main` or tag the matching commit, for example `v2.2.4-go`. Tag, UI, package, and server versions must agree.
+- **Release** runs for `v*` tags, relevant version/release-note changes on `main`, or **Actions → Release → Run workflow**. It runs the same checks plus the **Native platforms** workflow, then publishes only after all six targets pass. Downloads include each native executable/portable ZIP, the full Linux amd64 distribution, source ZIP, combined build metadata and SHA-256 checksums. Existing published releases are left unchanged.
+- For a new version, update `internal/controller/value.go`, `public/core.mjs`, and `package.json` together, and add `docs/releases/v<VERSION>.md`. Push to `main` or tag the matching commit, for example `v2.2.5-go`. Tag, UI, package, and server versions must agree.
 
-Workflows use the repository's built-in `GITHUB_TOKEN`; no NiceHash or Telegram credentials are required. Only the release publication job requests `contents: write`. Pull requests run with read-only repository permissions. Third-party actions are pinned to full commit SHAs.
+Workflows use the repository's built-in `GITHUB_TOKEN`; no NiceHash or Telegram credentials are required. The native matrix runs Go unit tests, validates OS/CPU headers, and starts each executable twice with a temporary SQLite ledger to verify persistence. Only the release publication job requests `contents: write`. Pull requests run with read-only repository permissions. Third-party actions are pinned to full commit SHAs.
 
 ### Build and test locally
 

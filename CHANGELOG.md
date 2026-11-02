@@ -2,6 +2,13 @@
 
 Release notes for the Go edition of FastPool EasyMining. See [README.md](README.md) for current installation and usage instructions. Notes describe the behavior introduced in each release; [API-AUDIT.md](API-AUDIT.md) retains the dated provider investigation.
 
+## 2.2.5-go — 2 November 2026
+
+- Added native Windows x64/ARM64, macOS Intel/Apple Silicon, and Linux x64/ARM64 executable builds and portable ZIPs.
+- Added native tests, executable architecture validation, startup/SQLite restart checks and per-target build metadata before publishing.
+- Added a combined release checksum manifest covering all targets and retained the existing full Linux amd64/source distributions.
+- Kept the trading engine, ledger and account configuration behavior unchanged.
+
 ## GitHub automation update — 2 November 2026
 
 - Added Go vet/race tests, JavaScript regressions, Docker builds, isolated startup checks, and downloadable workflow artifacts.

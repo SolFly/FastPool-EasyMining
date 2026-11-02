@@ -1,6 +1,6 @@
 {
   "name": "fastpool-easymining-controller",
-  "version": "2.2.4-go",
+  "version": "2.2.5-go",
   "private": true,
   "type": "module",
   "scripts": {
