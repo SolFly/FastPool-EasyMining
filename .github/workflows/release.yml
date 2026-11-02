@@ -1,0 +1,92 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+    paths:
+      - internal/controller/value.go
+      - .github/workflows/release.yml
+      - docs/releases/**
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: easymining-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    name: Test and build
+    uses: ./.github/workflows/ci.yml
+
+  publish:
+    name: Publish verified release
+    needs: checks
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Download files from this run
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: easymining-release-files
+          path: dist/release
+      - name: Verify provenance and checksums
+        working-directory: dist/release
+        env:
+          RELEASE_VERSION: ${{ needs.checks.outputs.version }}
+        run: |
+          sha256sum --check SHA256SUMS
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          info = json.loads(Path('BUILD_INFO.json').read_text())
+          assert info['commit'] == os.environ['GITHUB_SHA'], 'Wrong source commit'
+          assert info['version'] == os.environ['RELEASE_VERSION'], 'Wrong application version'
+          expected = 'v' + info['version']
+          ref = os.environ['GITHUB_REF']
+          if ref.startswith('refs/tags/'):
+              assert ref == 'refs/tags/' + expected, 'Tag and application version differ'
+          PY
+      - name: Publish release with assets
+        working-directory: dist/release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_VERSION: ${{ needs.checks.outputs.version }}
+        run: |
+          set -euo pipefail
+          tag="v$RELEASE_VERSION"
+          assets=(
+            fastpool-easymining-linux-amd64
+            "fastpool-easymining-v$RELEASE_VERSION.zip"
+            "FastPool-EasyMining-GitHub-v$RELEASE_VERSION.zip"
+            BUILD_INFO.json
+            SHA256SUMS
+          )
+          if state="$(gh release view "$tag" --json isDraft --jq .isDraft 2>/dev/null)"; then
+            if [ "$state" = false ]; then
+              echo "::notice::Release $tag already exists; published assets were not changed."
+              exit 0
+            fi
+            target="$(gh api "repos/$GITHUB_REPOSITORY/commits/$tag" --jq .sha)"
+            if [ "$target" != "$GITHUB_SHA" ]; then
+              echo '::error::An existing draft points to a different commit.'
+              exit 1
+            fi
+            gh release upload "$tag" "${assets[@]}" --clobber
+          else
+            gh release create "$tag" "${assets[@]}" \
+              --target "$GITHUB_SHA" \
+              --title "FastPool EasyMining $RELEASE_VERSION" \
+              --notes-file RELEASE_NOTES.md \
+              --draft
+          fi
+          gh release edit "$tag" --draft=false --latest \
+            --title "FastPool EasyMining $RELEASE_VERSION" \
+            --notes-file RELEASE_NOTES.md
