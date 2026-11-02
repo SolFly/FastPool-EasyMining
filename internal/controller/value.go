@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-const Version = "2.2.4-go"
+const Version = "2.2.5-go"
 const Sat int64 = 100000000
 const MaxSafe int64 = 9007199254740991
 
