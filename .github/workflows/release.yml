@@ -22,20 +22,35 @@ jobs:
     name: Test and build
     uses: ./.github/workflows/ci.yml
 
+  platforms:
+    name: Native platform tests and builds
+    uses: ./.github/workflows/platforms.yml
+
   publish:
     name: Publish verified release
-    needs: checks
+    needs: [checks, platforms]
     if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Download files from this run
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: easymining-release-files
           path: dist/release
+      - name: Download native platform files from this run
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          pattern: easymining-platform-*
+          merge-multiple: true
+          path: dist/release
+      - name: Require all six tested targets and assemble checksums
+        run: python3 scripts/platform-releases.py assemble
       - name: Verify provenance and checksums
         working-directory: dist/release
         env:
@@ -62,13 +77,7 @@ jobs:
         run: |
           set -euo pipefail
           tag="v$RELEASE_VERSION"
-          assets=(
-            fastpool-easymining-linux-amd64
-            "fastpool-easymining-v$RELEASE_VERSION.zip"
-            "FastPool-EasyMining-GitHub-v$RELEASE_VERSION.zip"
-            BUILD_INFO.json
-            SHA256SUMS
-          )
+          mapfile -t assets < RELEASE_ASSETS.txt
           if state="$(gh release view "$tag" --json isDraft --jq .isDraft 2>/dev/null)"; then
             if [ "$state" = false ]; then
               echo "::notice::Release $tag already exists; published assets were not changed."
