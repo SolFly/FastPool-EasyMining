@@ -7,6 +7,9 @@ on:
     paths:
       - internal/controller/value.go
       - .github/workflows/release.yml
+      - .github/workflows/platforms.yml
+      - scripts/platform-releases.py
+      - scripts/ci-build.sh
       - docs/releases/**
   workflow_dispatch:
 
