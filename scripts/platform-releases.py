@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build, smoke-test and collect native CGO executables without private account data."""
 import argparse
+from contextlib import closing
 import hashlib
 import json
 import os
@@ -111,7 +112,7 @@ def smoke(binary, release_version):
             key = (data / 'master.key').read_bytes()
             assert len(key) == 32 and (previous_key is None or key == previous_key), 'Instance key changed on restart'
             previous_key = key
-            with sqlite3.connect(data / 'controller.sqlite') as database:
+            with closing(sqlite3.connect(data / 'controller.sqlite')) as database:
                 tables = {row[0] for row in database.execute("SELECT name FROM sqlite_master WHERE type='table'")}
                 assert {'kv', 'orders', 'strategies', 'rewards'} <= tables, 'SQLite ledger not initialized'
     print('Native startup, SQLite and persisted-key restart checks passed.', flush=True)
@@ -149,6 +150,10 @@ https://github.com/SolFly/FastPool-EasyMining#readme
 '''
     entries = {destination.name: destination.read_bytes(), 'START-HERE.txt': notes.encode('utf-8')}
     entries.update({name: (ROOT / name).read_bytes() for name in ['LICENSE', '.env.example', 'config.example.json']})
+    entries.update({
+        'LICENSES/go-crypto.txt': (ROOT / 'vendor/golang.org/x/crypto/LICENSE').read_bytes(),
+        'LICENSES/go-sqlite3.txt': (ROOT / 'vendor/github.com/mattn/go-sqlite3/LICENSE').read_bytes(),
+    })
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as zipped:
         for name, contents in entries.items():
             info = zipfile.ZipInfo(prefix + name, date_time=(2026, 11, 2, 0, 0, 0))
