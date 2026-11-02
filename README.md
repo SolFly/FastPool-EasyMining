@@ -6,6 +6,8 @@ Buy solo packages or team shares, automate buying strategies, and track personal
 
 **Current version:** `2.2.4-go` · **Runtime:** Go + SQLite · **Deployment:** Docker or standalone Linux binary
 
+[![CI](https://github.com/SolFly/FastPool-EasyMining/actions/workflows/ci.yml/badge.svg)](https://github.com/SolFly/FastPool-EasyMining/actions/workflows/ci.yml) · [Download the latest release](https://github.com/SolFly/FastPool-EasyMining/releases/latest) · [MIT license](LICENSE)
+
 ![FastPool EasyMining overview with performance chart, spending, rewards, and daily profit](docs/screenshots/overview.jpg)
 
 *All screenshots show the paper demo with illustrative data. The self-hosted Go server connects to your NiceHash account; the browser demo uses simulated funds.*
@@ -60,7 +62,7 @@ docker compose logs easymining
 
 Open **http://localhost:8080**. On a new installation, use the one-time setup token printed in the logs to create an administrator password of at least 12 characters. An optional `APP_PASSWORD` can instead initialize the password on first setup.
 
-The default Compose configuration binds port 8080 to `127.0.0.1`. For a remote host, use an SSH tunnel or an HTTPS reverse proxy. Set `PUBLIC_URL` to the exact browser origin when using a proxy.
+The repository's Compose configuration publishes port 8080 on the host. To use an SSH tunnel or a local HTTPS reverse proxy, change the port mapping to `127.0.0.1:8080:8080`. Set `PUBLIC_URL` to the exact browser origin when using a proxy.
 
 ```sh
 # Run on your own computer; replace user@your-server with your SSH destination.
@@ -249,6 +251,16 @@ docker compose exec -T easymining wget -qO- http://127.0.0.1:8080/healthz
 </details>
 
 ## Development
+
+### GitHub Actions and releases
+
+- **CI** runs on pushes to `main`, pull requests, or **Actions → CI → Run workflow**. It runs Go vet/race tests and JavaScript regressions, builds the Docker image, checks the static executable's version, starts an isolated temporary instance, and saves the release files as a workflow artifact for 14 days.
+- **Release** runs for `v*` tags, relevant version/release-note changes on `main`, or **Actions → Release → Run workflow**. It runs the same checks, then creates a draft, attaches the executable, installable ZIP, full source ZIP, build metadata, and SHA-256 checksums, and publishes it. Existing published releases are left unchanged.
+- For a new version, update `internal/controller/value.go`, `public/core.mjs`, and `package.json` together, and add `docs/releases/v<VERSION>.md`. Push to `main` or tag the matching commit, for example `v2.2.4-go`. Tag, UI, package, and server versions must agree.
+
+Workflows use the repository's built-in `GITHUB_TOKEN`; no NiceHash or Telegram credentials are required. Only the release publication job requests `contents: write`. Pull requests run with read-only repository permissions. Third-party actions are pinned to full commit SHAs.
+
+### Build and test locally
 
 Build requirements: **Go 1.26+ and a C compiler**. SQLite is compiled from vendored source; a separate SQLite server is not required. The Dockerfile pins its Go toolchain. Third-party dependency licenses are retained under `vendor/`.
 

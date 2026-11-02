@@ -2,6 +2,13 @@
 
 Release notes for the Go edition of FastPool EasyMining. See [README.md](README.md) for current installation and usage instructions. Notes describe the behavior introduced in each release; [API-AUDIT.md](API-AUDIT.md) retains the dated provider investigation.
 
+## GitHub automation update — 2 November 2026
+
+- Added Go vet/race tests, JavaScript regressions, Docker builds, isolated startup checks, and downloadable workflow artifacts.
+- Added automatic releases for matching version tags or release updates on `main`, with a manual Run workflow option.
+- Included the static Linux amd64 binary, installable distribution, full source, build metadata, and SHA-256 checksums in releases.
+- Included the repository's MIT license in both packages and retained the runtime version at `2.2.4-go`.
+
 ## Documentation update — 1 November 2026
 
 - Reorganized the README for GitHub with setup, configuration, workflows, accounting, upgrades, backups, and troubleshooting.
