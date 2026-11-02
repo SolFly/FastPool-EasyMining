@@ -5,7 +5,7 @@ import {providerUnits} from './provider-amounts.mjs';
 import {catalogueBlockRewards} from './package-rewards.mjs';
 import {rejectedTeamTarget,rejectedTeamReason,TEAM_STATE_REJECTED_REASON} from './purchase-status.mjs';
 import {levelBuying,validateTeamLevels,nextTeamLevel,purchaseCount} from './team-levels.mjs';
-export const VERSION = '2.2.4-go';
+export const VERSION = '2.2.5-go';
 export const SAT = 100000000;
 export function units(value) {
   if (typeof value === 'number') {
